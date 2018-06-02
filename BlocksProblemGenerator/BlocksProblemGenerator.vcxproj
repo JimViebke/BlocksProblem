@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7FCEC889-A3FE-423C-A580-40CF96CCBBE3}</ProjectGuid>
+    <ProjectGuid>{AE209609-10F3-4AB8-AB71-2345F7E9832C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BlocksProblem</RootNamespace>
+    <RootNamespace>BlocksProblemGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,9 +147,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="world.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
