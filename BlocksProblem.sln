@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlocksProblem", "BlocksProblem\BlocksProblem.vcxproj", "{7FCEC889-A3FE-423C-A580-40CF96CCBBE3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1. BlocksProblem", "BlocksProblem\BlocksProblem.vcxproj", "{7FCEC889-A3FE-423C-A580-40CF96CCBBE3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlocksProblemGenerator", "BlocksProblemGenerator\BlocksProblemGenerator.vcxproj", "{AE209609-10F3-4AB8-AB71-2345F7E9832C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2. BlocksProblemGenerator", "BlocksProblemGenerator\BlocksProblemGenerator.vcxproj", "{AE209609-10F3-4AB8-AB71-2345F7E9832C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlocksProblemInternal", "BlocksProblemInternal\BlocksProblemInternal.vcxproj", "{42DB53F8-A822-4F7D-A3C9-676DB884AC96}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3. BlocksProblemInternal", "BlocksProblemInternal\BlocksProblemInternal.vcxproj", "{42DB53F8-A822-4F7D-A3C9-676DB884AC96}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlocksProblemBucketless", "BlocksProblemBucketless\BlocksProblemBucketless.vcxproj", "{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{42DB53F8-A822-4F7D-A3C9-676DB884AC96}.Release|x64.Build.0 = Release|x64
 		{42DB53F8-A822-4F7D-A3C9-676DB884AC96}.Release|x86.ActiveCfg = Release|Win32
 		{42DB53F8-A822-4F7D-A3C9-676DB884AC96}.Release|x86.Build.0 = Release|Win32
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Debug|x64.ActiveCfg = Debug|x64
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Debug|x64.Build.0 = Debug|x64
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Debug|x86.Build.0 = Debug|Win32
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Release|x64.ActiveCfg = Release|x64
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Release|x64.Build.0 = Release|x64
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Release|x86.ActiveCfg = Release|Win32
+		{4F7C88DD-30CF-49BC-9F7C-DC1AF8404D0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
