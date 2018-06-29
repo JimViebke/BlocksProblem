@@ -74,6 +74,7 @@ int main()
 	world.print();
 
 	std::cout << "Executed " << commands.size() << " steps against " << block_count << " blocks.\n";
-	std::cout << "Loaded commands in " << finish_load - start_load << "ms.\n";
-	std::cout << "Executed commands in " << finish_execution - start_execution << "ms.\n";
+	std::cout << "Loaded commands in " << finish_load - start_load << " ms.\n";
+	std::cout << "Executed commands in " << finish_execution - start_execution << " ms.\n";
+	std::cout << (finish_execution - start_execution) * 1'000'000 / commands.size() << " ns per instruction.\n";
 }
