@@ -46,7 +46,7 @@ int main()
 
 
 
-	// world.print();
+	world.print();
 
 	std::cout << "Executed " << instructions.size()-1 << " steps against " << block_count << " blocks.\n";
 	std::cout << "Loaded commands in " << finish_load - start_load << " ms.\n";

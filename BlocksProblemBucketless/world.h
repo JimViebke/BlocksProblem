@@ -18,10 +18,8 @@ private:
 class world
 {
 public:
-	world(const size_t size) : world_(size, block()), NOTHING(size)
+	world(const size_t size) : world_(size, block()), bottom_lookup(size, 0), NOTHING(size)
 	{
-		world_.reserve(size);
-
 		for (size_t i = 0; i < size; ++i)
 		{
 			world_[i].element_above = NOTHING;
@@ -63,20 +61,13 @@ public:
 		{
 			std::cout << bucket << ':';
 
-			// find any element in the bucket
-			const size_t any_element = find_any_element_in_bucket(bucket);
+			size_t element = bottom_lookup[bucket];
 
-			if (any_element != NOTHING)
+			// print each element from the bottom to the top
+			while (element != NOTHING)
 			{
-				// find the element at the bottom of the bucket
-				size_t element = bottom_of(world_[any_element]);
-
-				// print each element from the bottom to the top
-				do
-				{
-					std::cout << ' ' << element;
-					element = world_[element].element_above;
-				} while (element != NOTHING);
+				std::cout << ' ' << element;
+				element = world_[element].element_above;
 			}
 
 			std::cout << '\n';
@@ -122,8 +113,13 @@ private:
 	{
 		block& moving_block = world_[value_1];
 
-		// if there is an element blow this
-		if (moving_block.element_below != NOTHING)
+		// if there is no element below this one
+		if (moving_block.element_below == NOTHING)
+		{
+			// ...the bucket it is leaving now has no bottom
+			bottom_lookup[moving_block.bucket] = NOTHING;
+		}
+		else
 		{
 			// note that the element below will have nothing above it
 			world_[moving_block.element_below].element_above = NOTHING;
@@ -144,8 +140,13 @@ private:
 		// find the start of the elements to move
 		block& moving_block = world_[value_1];
 
-		// if there is an element blow this
-		if (moving_block.element_below != NOTHING)
+		// if there is nothing below this...
+		if (moving_block.element_below == NOTHING)
+		{
+			// ...then the bucket we're moving out of will be empty
+			bottom_lookup[moving_block.bucket] = NOTHING;
+		}
+		else // if there is an element below this
 		{
 			// note that the element below will have nothing above it
 			world_[moving_block.element_below].element_above = NOTHING;
@@ -182,35 +183,28 @@ private:
 		{
 			block& current_block = world_[current_top];
 
-			// The element "current_top" must be moved to the bottom of its original bucket.
-			// The easy (and slow) way to find the bottom is to scan the world until we find
-			// any element in this bucket, then follow to the bottom of that stack, then
-			// declare us to be underneath that element.
-
 			// find any element in the bucket that is the value of the current top element
-			const size_t element_in_this_bucket = find_any_element_in_bucket(current_top);
+			const size_t old_bottom = bottom_lookup[current_top];
 
-			// if there are no other elements in this bucket
-			if (element_in_this_bucket == NOTHING)
+			// if there is at least one element in this element's original bucket
+			if (old_bottom != NOTHING)
 			{
-				current_block.element_above = NOTHING;
-			}
-			else // there is at least one element in this element's original bucket
-			{
-				// find the bottom
-				const size_t old_bottom = bottom_of(current_block);
-
 				// set the moving block below the previously bottom block
 				world_[old_bottom].element_below = current_top;
-				current_block.element_above = old_bottom;
 			}
 
-			// cache what will be the new top
+			// whatever was on the bottom (including nothing) is now above this
+
+			// cache what will be the new top of the working stack
 			const size_t next_element = current_block.element_below;
 
-			// the element we just moved has nothing below it, and is in its own bucket
-			current_block.element_below = NOTHING;
+			// update what is above, and the current bucket, and what is below
+			current_block.element_above = old_bottom;
 			current_block.bucket = current_top;
+			current_block.element_below = NOTHING;
+
+			// note that the element is now the bottom of its original bucket
+			bottom_lookup[current_top] = current_top;
 
 			// use the cached value for the next iteration
 			current_top = next_element;
@@ -233,30 +227,18 @@ private:
 
 		return current_element;
 	}
-	size_t bottom_of(const block & block) const
-	{
-		size_t current_element = block.bucket;
+	//size_t find_any_element_in_bucket(const size_t bucket) const
+	//{
+	//	for (size_t i = 0; i < world_.size(); ++i)
+	//	{
+	//		if (world_[i].bucket == bucket)
+	//		{
+	//			return i;
+	//		}
+	//	}
 
-		// while this element has an element below it
-		while (world_[current_element].element_below != NOTHING)
-		{
-			current_element = world_[current_element].element_below;
-		}
-
-		return current_element;
-	}
-	size_t find_any_element_in_bucket(const size_t bucket) const
-	{
-		for (size_t i = 0; i < world_.size(); ++i)
-		{
-			if (world_[i].bucket == bucket)
-			{
-				return i;
-			}
-		}
-
-		return NOTHING;
-	}
+	//	return NOTHING;
+	//}
 
 	bool is_valid(const size_t value_1, const size_t value_2) const
 	{
@@ -295,7 +277,7 @@ private:
 	}
 
 	std::vector<block> world_;
-	std::vector<size_t> bottom_lookup;
+	std::vector<size_t> bottom_lookup; // maps a bucket to the element at the bottom of the bucket
 
 	const size_t NOTHING;
 };
