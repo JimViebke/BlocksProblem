@@ -172,6 +172,8 @@ private:
 	}
 	void return_elements_above(const size_t value)
 	{
+		if (world_[value].element_above == NOTHING) return;
+
 		// to return element N,
 		// -- find the element at the bottom of bucket N
 		// -- declare N to be the new bottom of bucket N
