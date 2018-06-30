@@ -227,18 +227,6 @@ private:
 
 		return current_element;
 	}
-	//size_t find_any_element_in_bucket(const size_t bucket) const
-	//{
-	//	for (size_t i = 0; i < world_.size(); ++i)
-	//	{
-	//		if (world_[i].bucket == bucket)
-	//		{
-	//			return i;
-	//		}
-	//	}
-
-	//	return NOTHING;
-	//}
 
 	bool is_valid(const size_t value_1, const size_t value_2) const
 	{
