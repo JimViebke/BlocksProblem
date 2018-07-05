@@ -26,7 +26,7 @@ int main()
 
 
 	const time_t start_load = current_time_in_ms();
-	auto instructions = generate(block_count, instruction_count);
+	const auto instructions = generate(block_count, instruction_count);
 
 	const time_t finish_load = current_time_in_ms();
 
